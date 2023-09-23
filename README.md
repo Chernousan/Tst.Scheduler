@@ -2,8 +2,8 @@
 
 Coding.
 
-##Requirements:
-Requirements:
+## Requirements:
+
 - Assume scheduler needs to run permanently
 - Assume a constant amount of N resources are available to you.
 - Scheduler shall assign task to resource
@@ -37,4 +37,4 @@ UnitTest:
 running 4 tasks of prio 1 for 2 tasks of prio 2 and 1 of prio 4.
 
 ##
-######Created by Dmytro Chernousan 9_22_23
+###### Created by Dmytro Chernousan 9_22_23
