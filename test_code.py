@@ -1,5 +1,5 @@
 #  -*- coding: utf-8 -*-
-#  """ Project: service | File: test_code.py | Created: 9/23/23, 1:55 PM"""
+""" Project: service | File: test_code.py | Created: 9/23/23, 1:55 PM"""
 #  Created by Dmytro Chernousan
 #  email: Chernousan@gmail.com
 #  Copyright (c) 2023
