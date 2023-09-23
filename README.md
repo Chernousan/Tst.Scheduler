@@ -1,5 +1,8 @@
-# Codding
+# Scheduler
 
+Coding.
+
+##Requirements:
 Requirements:
 - Assume scheduler needs to run permanently
 - Assume a constant amount of N resources are available to you.
@@ -32,3 +35,6 @@ UnitTest:
 - Priority of task shall be represented as an integer, highest priority 1, lowest N.
 - It shall serve as a “inverse” weight, meaning in optimal state scheduler shall be
 running 4 tasks of prio 1 for 2 tasks of prio 2 and 1 of prio 4.
+
+##
+######Created by Dmytro Chernousan 9_22_23
