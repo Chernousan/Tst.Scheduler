@@ -10,8 +10,14 @@ from unittest import TestCase
 from code import Scheduler, Queue, Resource, Task
 
 
-class Scheduler_run(TestCase):
+class SchedulerRun(TestCase):
+    """
+    UnitTest
+    """
     def test_case_1(self):
+        """
+        Test flow
+        """
         logging.basicConfig(filename='test_code.log', level=logging.DEBUG,
                             format='%(asctime)-15s  %(levelname)s - %(message)s')
         logging.info('Start program')
@@ -19,10 +25,10 @@ class Scheduler_run(TestCase):
         # init Task queue
         task_queue = Queue()
         # 4 Task with priority 1
-        task_1_p_1 = Task('Task_1_p_1', 1)
-        task_2_p_1 = Task('Task_2_p_1', 1)
-        task_3_p_1 = Task('Task_3_p_1', 1)
-        task_4_p_1 = Task('Task_4_p_1', 1)
+        task_1_p_1 = Task('Task_1_p_1')
+        task_2_p_1 = Task('Task_2_p_1')
+        task_3_p_1 = Task('Task_3_p_1')
+        task_4_p_1 = Task('Task_4_p_1')
         # 2 Task with priority 2
         task_5_p_2 = Task('Task_5_p_2', 2)
         task_6_p_2 = Task('Task_6_p_2', 2)
@@ -30,7 +36,8 @@ class Scheduler_run(TestCase):
         task_7_p_4 = Task('Task_7_p_4', 4)
 
         # randomize Task
-        random_task_array = [task_7_p_4, task_5_p_2, task_3_p_1, task_1_p_1, task_4_p_1, task_2_p_1, task_6_p_2]
+        random_task_array = [task_7_p_4, task_5_p_2, task_3_p_1, task_1_p_1,
+                             task_4_p_1, task_2_p_1, task_6_p_2]
 
         # init & start Scheduler
         scheduler = Scheduler(task_queue)
@@ -45,7 +52,7 @@ class Scheduler_run(TestCase):
         scheduler.add_resource(2, resource_2)
 
         for task_item in random_task_array:
-            logging.info(f'{task_item.name} priority {task_item.priority} ADDED to queue ')
+            logging.info('%s priority %s ADDED to queue ', task_item.name, task_item.priority)
             task_queue.add(task_item)
 
         # waiting processing all task in queue
@@ -56,4 +63,3 @@ class Scheduler_run(TestCase):
         scheduler.finish()
 
         self.assertTrue(task_queue.count() == 0, 'Some task is still in queue open')
-
