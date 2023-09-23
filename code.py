@@ -21,19 +21,19 @@ class Task(Thread):
         self.priority = priority
         self._callback = None
 
-    def set_callback(self, fn: object) -> None:
+    def set_callback(self, fn_in: object) -> None:
         """
-        :param fn: object
+        :param fn_in: object
         """
-        self._callback = fn
+        self._callback = fn_in
 
     def run(self) -> None:
         """
         Start task
         """
-        logging.debug(f'{self.name} priority {self.priority} - STARTED')
+        logging.debug('%s priority %s - STARTED', self.name, self.priority)
         time.sleep(randint(2, 4))  # payload imitation
-        logging.debug(f'{self.name} priority {self.priority} - FINISHED')
+        logging.debug('%s  priority %s - FINISHED', self.name, self.priority)
         if self._callback:
             self._callback()
 
@@ -69,16 +69,19 @@ class Resource:
             return None
         # Set Resource state to STARTED
         self._state = self.STARTED
-        logging.debug(f'{self.name} start processing {task.name} priority {task.priority} set to - BUSY')
+        logging.debug('%s start processing %s priority %s set to - BUSY',
+                      self.name, task.name, task.priority)
         # set callback
         task.set_callback(self.stop_processing)
         task.start()
+
+        return None
 
     def stop_processing(self) -> None:
         """
         # Set Resource state to STOPPED
         """
-        logging.debug(f'{self.name} set to - FREE')
+        logging.debug('%s set to - FREE', self.name)
         self._state = self.STOPPED
 
 
@@ -173,7 +176,7 @@ class Scheduler(Thread):
                 continue
 
             # set Task to Resource
-            logging.debug(f'{resource.name} linked {task.name} priority {task.priority}')
+            logging.debug('%s linked %s priority %s', resource.name, task.name, task.priority)
             resource.start_processing(task)
             self._queue.remove(task)
 
@@ -207,7 +210,7 @@ class Generator(Thread):
             priority = randint(1, 5)
             name = f'Task_{self.idx}'
             task = Task(name, priority)
-            logging.info(f'{task.name} priority {task.priority} CREATED')
+            logging.info('%s priority %s CREATED', task.name, task.priority)
             self.queue.add(task)
             self.idx += 1
             time.sleep(randint(1, 2))
@@ -215,7 +218,8 @@ class Generator(Thread):
 
 if __name__ == '__main__':
     # init logging
-    logging.basicConfig(filename='code.log', level=logging.DEBUG, format='%(asctime)15s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename='code.log', level=logging.DEBUG,
+                        format='%(asctime)15s - %(levelname)s - %(message)s')
     logging.info('Start program')
 
     # init Task Queue
