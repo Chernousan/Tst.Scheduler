@@ -147,10 +147,9 @@ class Scheduler(Thread):
         """
         :return: free resource
         """
-        for item in self._resources:
-            resource_item = self._resources[item]
-            if resource_item.can_processing() and item == self._resource_cursor:
-                return resource_item
+        for idx, item in self._resources.items():
+            if item.can_processing() and idx == self._resource_cursor:
+                return item
         return None
 
     def run(self) -> None:
